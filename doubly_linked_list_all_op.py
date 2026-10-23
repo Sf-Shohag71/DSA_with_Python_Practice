@@ -37,33 +37,66 @@ class DoublyLinkedList:
 
     # 3. Insert at a given position (zero-indexed)
     def insert_at_position(self, data, position):
-        if position < 0:
-            raise IndexError("Invalid position")
+            if position < 0:
+                raise IndexError("Invalid position")
 
-        if position == 0:
-            self.insert_at_beginning(data)
-            return
-
-        current = self.head
-        index = 0
-
-        while current is not None and index < position:
-            current = current.next
-            index += 1
-
-        if current is None:
-            if index == position:
-                self.insert_at_end(data)
+            if position == 0:
+                self.insert_at_beginning(data)
                 return
-            raise IndexError("Position out of range")
 
-        new_node = Node(data)
-        previous_node = current.prev
+            current = self.head
 
-        new_node.prev = previous_node
-        new_node.next = current
-        previous_node.next = new_node
-        current.prev = new_node
+            # Move to the node before the insertion position
+            for _ in range(position - 1):
+                if current is None:
+                    raise IndexError("Position out of range")
+                current = current.next
+
+            if current is None:
+                raise IndexError("Position out of range")
+
+            new_node = Node(data)
+
+            # Connect the new node
+            new_node.prev = current
+            new_node.next = current.next
+
+            if current.next is not None:
+                current.next.prev = new_node
+            else:
+                self.tail = new_node
+
+            current.next = new_node
+
+    # 3. Insert at a given position (zero-indexed)
+    # def insert_at_position(self, data, position):
+    #     if position < 0:
+    #         raise IndexError("Invalid position")
+
+    #     if position == 0:
+    #         self.insert_at_beginning(data)
+    #         return
+
+    #     current = self.head
+    #     index = 0
+
+    #     while current is not None and index < position:
+    #         current = current.next
+    #         index += 1
+
+    #     if current is None:
+    #         if index == position:
+    #             self.insert_at_end(data)
+    #             return
+    #         raise IndexError("Position out of range")
+
+    #     new_node = Node(data)
+    #     previous_node = current.prev
+
+    #     new_node.prev = previous_node
+    #     new_node.next = current
+    #     previous_node.next = new_node
+    #     current.prev = new_node
 
     # 4. Delete from the beginning
     def delete_from_beginning(self):
