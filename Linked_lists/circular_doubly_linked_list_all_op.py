@@ -81,6 +81,68 @@ class CircularDoublyLinkedList:
         previous_node.next = new_node
         current.prev = new_node
 
+
+    # Insert at position without using insert_at_beginning or insert at the end and size() method
+    # def insert_at_position(self, data, position):
+
+    #     if position < 0:
+    #         raise IndexError("Invalid position")
+
+    #     new_node = Node(data)
+
+    #     # Case 1: Empty linked list
+    #     if self.head is None:
+    #         if position != 0:
+    #             raise IndexError("Invalid position")
+
+    #         self.head = new_node
+    #         self.tail = new_node
+
+    #         new_node.next = new_node
+    #         new_node.prev = new_node
+    #         return
+
+    #     # Case 2: Insert at beginning
+    #     if position == 0:
+    #         new_node.next = self.head
+    #         new_node.prev = self.tail
+
+    #         self.head.prev = new_node
+    #         self.tail.next = new_node
+
+    #         self.head = new_node
+    #         return
+
+    #     # Case 3: Traverse to the previous node
+    #     current = self.head
+    #     count = 0
+
+    #     while count < position - 1 and current.next != self.head:
+    #         current = current.next
+    #         count += 1
+
+    #     # Case 4: Validate position
+    #     if count != position - 1:
+    #         raise IndexError("Invalid position")
+
+    #     # Case 5: Insert at the end
+    #     if current == self.tail:
+    #         new_node.next = self.head
+    #         new_node.prev = self.tail
+
+    #         self.tail.next = new_node
+    #         self.head.prev = new_node
+
+    #         self.tail = new_node
+    #         return
+
+    #     # Case 6: Insert in the middle
+    #     new_node.next = current.next
+    #     new_node.prev = current
+
+    #     current.next.prev = new_node
+    #     current.next = new_node
+
     # 4. Delete from the beginning
     def delete_from_beginning(self):
         if self.head is None:
